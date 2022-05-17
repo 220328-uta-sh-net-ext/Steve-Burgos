@@ -1,11 +1,14 @@
 ﻿using Microsoft.Data.SqlClient;
-using System.Data; 
+using System.Data;
+using Models;
 
 namespace DL;
+
 
 public class SQLDataLogic
 {
 
+    
     static public string ConnectOpen(string connection)
     {
 
@@ -14,8 +17,8 @@ public class SQLDataLogic
     }
 
 
-  
-    static public List<Object> GetTable(string connectionString, string tableName)
+
+    static public void GetTable(string connectionString, string tableName)
     {
 
         string commandString = $"SELECT * FROM [{tableName}]";
@@ -49,7 +52,6 @@ public class SQLDataLogic
 
         // Console.WriteLine(commandString);
 
-        return myTable;
     }
 
 
@@ -67,9 +69,10 @@ public class SQLDataLogic
 
 
 
+        //DataTable dt = new DataTable();
         /// List<Object> myTable;
 
-        // List<Object> myTable = new List<Object>();
+        List<Object> myTable = new List<Object>();
 
         if (reader.HasRows)
         {
@@ -90,6 +93,20 @@ public class SQLDataLogic
         // return myTable;
     }
 
+    static public void ShowUsers()
+        {
+        const string connectionStringFilePath = "../connections.txt";
+        string? connectionString = File.ReadAllText(connectionStringFilePath);
+        string commandString = $"SELECT* FROM [Users]";
+
+        using SqlConnection connection = new(connectionString);
+        connection.Open();
+        using SqlCommand command = new(commandString, connection);
+        Console.WriteLine(command);
+        using SqlDataReader reader = command.ExecuteReader();
+       
+      
+        }
     static public void SearchTable(string connectionString, string tableName, string columnName, string searchItem)
     {
 
@@ -104,9 +121,9 @@ public class SQLDataLogic
 
 
 
-        /// List<Object> myTable;
+        // List<Object> myTable;
 
-        // List<Object> myTable = new List<Object>();
+        List<Object> myTable = new List<Object>();
 
         if (reader.HasRows)
         {
@@ -127,6 +144,7 @@ public class SQLDataLogic
         //Console.WriteLine(commandString);
         // return myTable;
     }
+
 
     static public void SearchTableWithIntegerReviews(string connectionString, string tableName, string columnName, string searchItem)
     {

@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "RESTApiWithAzureFunction": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 33323,
+      "useSSL": false
+    }
+  }
+}
