@@ -8,7 +8,6 @@ An App that allows you to search and submit reviews about local restaurants
 
 * .NET
 * C#
-* 
 
 ## Features
 
